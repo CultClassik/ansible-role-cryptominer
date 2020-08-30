@@ -1,0 +1,23 @@
+---
+- name: Prevent PCI-E errors casued by power management
+  lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX=.*$'
+    line: GRUB_CMDLINE_LINUX="pci=nomsi" #' net.ifnames=0 biosdevname=0"'
+  notify: Update XDM
+
+- name: Generate GRUB_CMDLINE_LINUX_DEFAULT
+  set_fact:
+    grubline: >-
+      {%- if gpu_arch == 'amd' -%}
+        {{ grub_opts }} amdgpu.vm_fragment_size=9
+      {%- else -%}
+        {{ grub_opts }}
+      {%- endif -%}
+
+- name: GRUB_CMDLINE_LINUX_DEFAULT
+  lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT=.*$'
+    line: "GRUB_CMDLINE_LINUX_DEFAULT=\"{{ grubline }}\""
+  notify: Reboot required

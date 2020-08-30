@@ -1,0 +1,24 @@
+#!/bin/bash
+# Chris Diehl
+
+# to set fan speed:
+# nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[gpu:0]/GPUTargetFanSpeed=80"
+
+export DISPLAY=:0
+
+/usr/bin/nvidia-smi -pm ENABLED
+/usr/bin/nvidia-smi -pl 100
+
+{% for gpuid in range(gpu_conf.qty) %}
+echo "Configuring card id: {{ gpuid }}"
+/usr/bin/nvidia-smi -pl {{ gpu_conf.pwr }} -i {{ gpuid }}
+/usr/bin/nvidia-settings -a "[gpu:{{ gpuid }}]/GPUGraphicsClockOffset[3]={{ gpu_conf.gpu }}" \
+  -a "[gpu:{{ gpuid }}]/GPUMemoryTransferRateOffset[3]={{ gpu_conf.mem }}" \
+  {% if gpu_conf.fan is defined %}
+    -a "[gpu:{{ gpuid }}]/GPUFanControlState=1" \
+    -a "[gpu:{{ gpuid }}]/GPUTargetFanSpeed={{ gpu_conf.fan }}" \
+   {% endif %}
+  -a "[gpu:{{ gpuid }}]/GPUPowerMizerMode=1"
+{% endfor %}
+
+exit 0

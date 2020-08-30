@@ -1,0 +1,14 @@
+#!/bin/bash
+ETH_ADDR="{{ eth_addr }}"
+{% if gpu_arch == 'amd'  %}
+/minebox/ethminer/ethminer -G \
+{% else %}
+/minebox/ethminer/ethminer -U \
+{% endif %}
+-P stratum1+tcp://{{ eth_addr }}.${HOSTNAME}@{{ crypto.eth.pool1 }} \
+-P stratum1+tcp://{{ eth_addr }}.${HOSTNAME}@{{ crypto.eth.pool2 }} \
+--HWMON 1 --report-hr
+# --cu-devices 0
+# --opencl-devices 0
+#-P stratum1+tcp://${ETH_ADDR}.${HOSTNAME}@{{ crypto.eth.pool1 }} \
+#-P stratum1+tcp://${ETH_ADDR}.${HOSTNAME}@{{ crypto.eth.pool2 }}

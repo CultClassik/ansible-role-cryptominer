@@ -1,0 +1,19 @@
+---
+- name: Run miner containers
+  docker_container:
+    name: "gpu{{ item }}"
+    hostname: "{{ inventory_hostname_short }}-{{ item }}"
+    state: started
+    image: nvidia/cuda:11.0-base-ubuntu18.04
+    runtime: nvidia
+    restart_policy: on-failure
+    restart_retries: 10
+    exposed_ports:
+      - "3333"
+    env:
+      NVIDIA_VISIBLE_DEVICES={{ item }}
+    volumes:
+      - /minebox/start-miner.sh:/miner.sh:ro
+      - /minebox/ethminer:/minebox/ethminer:ro
+    entrypoint: /miner.sh
+  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}

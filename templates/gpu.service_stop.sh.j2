@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+GPU_ID={{ gpu_id }}
+
+/usr/bin/docker stop --time=0 gpu-${GPU_ID}
+    /usr/bin/docker rm -v gpu-${GPU_ID}
+
+exit $?

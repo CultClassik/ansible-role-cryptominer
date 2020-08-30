@@ -1,0 +1,16 @@
+---
+- name: Download amd gpu-pro driver
+  shell:
+    cmd: "wget --referer https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-20-30 {{ amd_driver_url }} --output-file /minebox/drivers/{{ amd_driver_file }}"
+    creates: "/minebox/drivers/{{ amd_driver_file }}"
+  args:
+    warn: no
+
+- name: Extract AMD driver archive
+  shell: 
+    cmd: "xz --decompress /minebox/drivers/{{ amd_driver_file }}"
+    chdir: /minebox/drivers
+    creates: /minebox/drivers/amdgpu-pro-20.30-1109583-ubuntu-18.04
+  args:
+    warn: no
+  notify: Execute AMD GPU-Pro driver installer

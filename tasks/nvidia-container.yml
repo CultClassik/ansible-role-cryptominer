@@ -1,0 +1,38 @@
+---
+- name: Generate stop scripts for GPU miners
+  template:
+    src: gpu.service_stop.sh.j2
+    dest: /usr/local/bin/gpu-miner-{{ item }}-stop.sh
+    mode: 0770
+    owner: root
+    group: root
+  vars:
+    gpu_id: "{{ item }}"
+  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
+
+- name: Generate start scripts for GPU miners
+  template:
+    src: gpu.service_start.sh.j2
+    dest: /usr/local/bin/gpu-miner-{{ item }}-start.sh
+    mode: 0770
+    owner: root
+    group: root
+  vars:
+    gpu_id: "{{ item }}"
+  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
+
+- name: Generate unit files for GPU miners
+  template:
+    src: gpu.service_unit.j2
+    dest: /etc/systemd/system/gpu-{{ item }}.service
+  vars:
+    gpu_id: "{{ item }}"
+  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
+  notify: Reload systemd units
+
+- name: Enable and start miner container services
+  systemd:
+    name: gpu-{{ item }}
+    enabled: yes
+    state: started
+  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}

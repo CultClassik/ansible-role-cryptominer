@@ -1,0 +1,32 @@
+---
+# handlers for crypto-miner role
+- name: Reload systemd units
+  systemd:
+    daemon_reload: yes
+
+- name: service nvidia-persistenced
+  systemd:
+    name: nvidia-persistenced
+    enabled: yes
+    state: started
+
+- name: execute conf-nv.sh
+  shell: /minebox/conf-nv.sh
+
+- name: execute nvoc.sh
+  shell: /minebox/nvoc.sh
+    
+- name: Execute AMD GPU-Pro driver installer
+  shell: 
+    cmd: "/minebox/drivers/amdgpu-pro-20.30-1109583-ubuntu-18.04/amdgpu-pro-install --opencl=legacy --headless -y"
+    chdir: /minebox/drivers
+  args:
+    warn: no
+  notify: Reboot required
+
+- name: Reboot required
+  reboot:
+
+- name: Update XDM
+  shell: /usr/sbin/update-rc.d xdm defaults & /bin/sync
+  notify: Reboot required

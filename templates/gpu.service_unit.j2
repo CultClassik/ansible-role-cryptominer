@@ -1,0 +1,19 @@
+[Unit]
+Description=Daemon for {{ gpu_id }}
+After=docker.service
+Wants=
+Requires=docker.service
+
+[Service]
+Restart=on-failure
+StartLimitInterval=20
+StartLimitBurst=5
+TimeoutStartSec=0
+RestartSec=5
+Environment="HOME=/root"
+SyslogIdentifier=gpu-{{ gpu_id }}
+ExecStart=/usr/local/bin/gpu-miner-{{ gpu_id }}-start.sh
+ExecStop=-/usr/local/bin/gpu-miner-{{ gpu_id }}-stop.sh
+
+[Install]
+WantedBy=multi-user.target

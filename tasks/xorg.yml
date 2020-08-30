@@ -1,0 +1,41 @@
+---
+- name: Install X11 packages
+  apt:
+    update_cache: yes
+    pkg: "{{ minebox_pkgs.xorg }}"
+
+- name: Create xorg reconfig script (conf-nv.sh)
+  copy:
+    src: Xsetup
+    dest: /etc/X11/xdm/Xsetup
+    mode: 0755
+
+- name: xauthority export
+  lineinfile:
+    path: /etc/profile
+    line: export XAUTHORITY=~/.Xauthority
+
+- name: xwrapper needs root rights
+  lineinfile:
+    path: /etc/X11/Xwrapper.config
+    regexp: '^needs_root_rights=.*$'
+    line: needs_root_rights=yes
+
+- name: xwrapper allowed users
+  lineinfile:
+    regexp: '^needs_root_rights=.*$'
+    path: /etc/X11/Xwrapper.config
+    line: allowed_users=anybody
+
+- name: Create .xinitrc
+  file:
+    path: /home/miner/.xinitrc
+    state: touch
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"
+    mode: 0774
+  
+- name: xinit_stuff
+  lineinfile:
+    path: /home/miner/.xinitrc
+    line: DISPLAY=:0 && xterm -geometry +1+1 -n login

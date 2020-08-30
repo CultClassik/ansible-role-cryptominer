@@ -1,0 +1,12 @@
+---
+# this appears to be included in the nvidia provided role
+- name: Create nvidia-persistenced unit file
+  copy:
+    src: nvidia-persistenced.service
+    dest: /etc/systemd/system/nvidia-persistenced.service
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+  - Reload systemd units
+  - service nvidia-persistenced

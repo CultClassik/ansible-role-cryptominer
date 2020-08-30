@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+GPU_ID="{{ gpu_id }}"
+NV_DOCKER_IMG="{{ nvidia_docker_image }}"
+
+/usr/bin/docker rm gpu-{{ gpu_id }} >/dev/null 2>&1
+/usr/bin/docker pull ${NV_DOCKER_IMG}
+
+/usr/bin/docker create \
+ -h ${HOSTNAME}-${GPU_ID} \
+ -e NVIDIA_VISIBLE_DEVICES=${GPU_ID} \
+ -v /etc/localtime:/etc/localtime \
+ --runtime=nvidia \
+ --restart on-failure:10 \
+ --name gpu-${GPU_ID} \
+ --volume /minebox/start-miner.sh:/miner.sh:ro \
+ --volume /minebox/ethminer:/minebox/ethminer:ro \
+ --entrypoint /miner.sh \
+  ${NV_DOCKER_IMG}
+
+/usr/bin/docker start -a gpu-${GPU_ID}
+
+exit $?

@@ -1,0 +1,45 @@
+---
+- name: Configure X11 headless
+  include: xorg.yml
+
+- name: Set Nvidia GPU order
+  lineinfile:
+    path: /etc/environment
+    line: CUDA_DEVICE_ORDER=PCI_BUS_ID
+  notify: Reboot required
+
+- name: Install Nvidia driver
+  include_role:
+    name: nvidia-driver
+
+#- name: Install Nvidia Docker plugin v2
+#  include_role:
+#    name: nvidia-docker
+
+- name: Create xorg reconfig script (conf-nv.sh)
+  copy:
+    src: conf-nv.sh
+    dest: /minebox/conf-nv.sh
+    mode: 0774
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"
+  notify: execute conf-nv.sh
+
+- name: Generate Nvidia overclock script
+  template:
+    src: nvoc.sh.j2
+    dest: /minebox/nvoc.sh
+    mode: 0774
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"
+  notify: execute nvoc.sh
+
+- name: crontab to run nvoc script
+  cron:
+    special_time: reboot
+    user: root
+    name: nvoc
+    job: sleep 1m && /minebox/nvoc.sh
+
+- name: Create miner containers
+  include: nvidia-container.yml

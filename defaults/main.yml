@@ -1,0 +1,57 @@
+---
+# defaults file for crypto-miner
+
+# nvidia or amd
+mining_type: # docker or script
+gpu_arch:
+gpu_conf:
+  model:
+  qty:
+  pwr:
+  gpu:
+  mem:
+
+ethminer_url: https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz
+amd_driver_file: amdgpu-pro-20.30-1109583-ubuntu-18.04.tar.xz
+amd_driver_url: https://drivers.amd.com/drivers/linux/{{amd_driver_file}}
+
+grub_opts: "quiet splash nomodeset"
+
+minebox_svc_acct: miner
+
+minebox_folders:
+- /minebox
+- /minebox/ethminer
+- /minebox/claymore
+- /minebox/drivers
+
+eth_addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
+
+crypto:
+  eth:
+    pool1: us1.ethermine.org:4444
+    pool2: us2.ethermine.org:4444
+
+nvidia_docker_image: nvidia/cuda:11.0-base-ubuntu18.04
+
+docker_group_members:
+- ansible
+- "{{ minebox_svc_acct }}"
+
+drivers:
+  nvidia: https://us.download.nvidia.com/XFree86/Linux-x86_64/450.66/NVIDIA-Linux-x86_64-450.66.run
+
+minebox_pkgs:
+  common:
+  - xzip
+  - unzip
+  - nfs-common
+  - acl # req for certain ansible functions
+  - tmux
+  xorg:
+  - xserver-xorg
+  - xserver-xorg-core
+  - xserver-xorg-input-evdev
+  - xserver-xorg-video-dummy
+  - x11-xserver-utils
+  - xdm

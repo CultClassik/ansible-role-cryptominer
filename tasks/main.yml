@@ -1,0 +1,48 @@
+---
+- name: Configure grub
+  include_tasks: grub.yml
+
+- name: rc.local
+  file:
+    path: /etc/rc.local
+    state: touch
+    mode: 0744
+
+- name: Update /etc/skel/.bashrc
+  lineinfile:
+    path: /etc/skel/.bashrc
+    line: export DISPLAY=:0
+  notify: Update XDM
+
+- name: Configure serice account
+  import_tasks: service_account.yml
+
+- name: Create minebox directories
+  file:
+    state: directory
+    path: "{{ item }}"
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"
+    mode: 0777
+  loop: "{{ minebox_folders }}"
+
+- name: Install common packages
+  apt:
+    update_cache: yes
+    pkg: "{{ minebox_pkgs.common }}"
+
+- name: Install docker
+  import_role:
+    name: docker
+
+- name: Download ethminer
+  import_tasks: ethminer.yml
+
+- include: amd-main.yml
+  when: gpu_arch == 'amd'
+
+- include: nvidia-main.yml
+  when: gpu_arch == 'nvidia'
+
+- include: cronmine.yml
+  when: mining_type == 'script'

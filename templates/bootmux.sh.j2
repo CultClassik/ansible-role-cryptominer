@@ -1,0 +1,5 @@
+#!/bin/bash
+session="minebox"
+tmux new-session -d -s $session
+tmux rename-window -t 0 'Main'
+tmux send-keys -t 'Main' "/minebox/start-miner.sh" C-m
