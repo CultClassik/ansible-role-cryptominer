@@ -12,10 +12,6 @@
   include_role:
     name: nvidia-driver
 
-#- name: Install Nvidia Docker plugin v2
-#  include_role:
-#    name: nvidia-docker
-
 - name: Create xorg reconfig script (conf-nv.sh)
   copy:
     src: conf-nv.sh
