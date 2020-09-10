@@ -18,7 +18,7 @@
     
 - name: Execute AMD GPU-Pro driver installer
   shell: 
-    cmd: "/minebox/drivers/amdgpu-pro-20.30-1109583-ubuntu-18.04/amdgpu-pro-install --opencl=legacy --headless -y"
+    cmd: "/minebox/drivers/amdgpu-pro-20.30-1109583-ubuntu-18.04/amdgpu-install --opencl=legacy --headless --no-dkms -y"
     chdir: /minebox/drivers
   args:
     warn: no
