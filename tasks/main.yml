@@ -1,4 +1,10 @@
 ---
+- name: Disable apt auto upgrades
+  lineinfile:
+    path: /etc/apt/apt.conf.d/20auto-upgrades
+    regexp: '^APT::Periodic::Unattended-Upgrade "0";'
+    line: APT::Periodic::Unattended-Upgrade "1";
+
 - name: Configure grub
   include_tasks: grub.yml
 
