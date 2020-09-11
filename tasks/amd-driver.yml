@@ -13,4 +13,5 @@
     creates: /minebox/drivers/amdgpu-pro-20.30-1109583-ubuntu-18.04
   args:
     warn: no
+  ignore_error: yes
   notify: Execute AMD GPU-Pro driver installer
