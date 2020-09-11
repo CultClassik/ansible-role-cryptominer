@@ -22,7 +22,7 @@
     chdir: /minebox/drivers
   args:
     warn: no
-  ignore_error: yes
+  ignore_errors: yes
   notify: Reboot required
 
 - name: Reboot required
