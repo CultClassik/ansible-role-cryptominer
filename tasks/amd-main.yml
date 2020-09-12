@@ -1,3 +1,6 @@
 ---
 - name: Download AMD GPU-Pro driver
   include_tasks: amd-driver.yml
+
+- name: Download and configure nbminer
+  include_tasks: nbminer.yml

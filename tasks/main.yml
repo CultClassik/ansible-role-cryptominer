@@ -48,7 +48,7 @@
   when: gpu_arch == 'amd'
 
 - name: NVidia GPU configuration
-  import_tasks: nvidia-main.yml
+  include_tasks: nvidia-main.yml
   when: gpu_arch == 'nvidia'
 
 - include: cronmine.yml

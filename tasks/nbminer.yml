@@ -1,27 +1,27 @@
 ---
-- name: Download ethminer
+- name: Download nbminer
   get_url: 
-    url: "{{ ethminer_url }}"
-    dest: /tmp/ethminer.tgz
+    url: "{{ nbminer_url }}"
+    dest: /tmp/nbminer.tgz
 
-- name: Create ethminer directory
+- name: Create nbminer directory
   file:
     state: directory
-    path: /minebox/ethminer
+    path: /minebox/nbminer
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
     mode: 0777
 
-- name: Extract ethminer tarball
+- name: Extract nbminer tarball
   unarchive:
     remote_src: yes
-    src: /tmp/ethminer.tgz
-    dest: /minebox/ethminer
+    src: /tmp/nbminer.tgz
+    dest: /minebox/nbminer
     extra_opts: "--strip-components=1"
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
 
-- name: Create ethminer startup script
+- name: Create nbminer startup script
   template:
     src: start-miner.sh.j2
     dest: /minebox/start-miner.sh

@@ -9,6 +9,7 @@
   vars:
     gpu_id: "{{ item }}"
   with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
+  when: gpu_conf is defined
 
 - name: Generate start scripts for GPU miners
   template:
@@ -20,6 +21,7 @@
   vars:
     gpu_id: "{{ item }}"
   with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
+  when: gpu_conf is defined
 
 - name: Generate unit files for GPU miners
   template:
@@ -28,6 +30,7 @@
   vars:
     gpu_id: "{{ item }}"
   with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
+  when: gpu_conf is defined
   notify: Reload systemd units
 
 - name: Enable and start miner container services
@@ -36,3 +39,4 @@
     enabled: yes
     state: started
   with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
+  when: gpu_conf is defined
