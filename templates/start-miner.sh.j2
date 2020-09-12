@@ -1,14 +1,21 @@
 #!/bin/bash
 ETH_ADDR="{{ eth_addr }}"
 {% if gpu_arch == 'amd'  %}
-/minebox/ethminer/ethminer -G \
+/minebox/nbminer/nbminer -a kawpow \
+-o stratum+tcp://us-east.kawpow-hub.miningpoolhub.com:20611 \
+-o stratum+tcp://europe.kawpow-hub.miningpoolhub.com:20611 \
+ -u cultclassik.${HOSTNAME}
 {% else %}
 /minebox/ethminer/ethminer -U \
-{% endif %}
 -P stratum1+tcp://{{ eth_addr }}.${HOSTNAME}@{{ crypto.eth.pool1 }} \
 -P stratum1+tcp://{{ eth_addr }}.${HOSTNAME}@{{ crypto.eth.pool2 }} \
 --HWMON 1 --report-hr
+{% endif %}
+
+# ethminer options...
+# /minebox/ethminer/ethminer -G \
 # --cu-devices 0
 # --opencl-devices 0
 #-P stratum1+tcp://${ETH_ADDR}.${HOSTNAME}@{{ crypto.eth.pool1 }} \
 #-P stratum1+tcp://${ETH_ADDR}.${HOSTNAME}@{{ crypto.eth.pool2 }}
+
