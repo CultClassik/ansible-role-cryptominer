@@ -2,8 +2,8 @@
 ETH_ADDR="{{ eth_addr }}"
 {% if gpu_arch == 'amd'  %}
 /minebox/nbminer/nbminer -a kawpow \
--o stratum+tcp://us-east.kawpow-hub.miningpoolhub.com:20611 \
 -o stratum+tcp://europe.kawpow-hub.miningpoolhub.com:20611 \
+-o stratum+tcp://us-east.kawpow-hub.miningpoolhub.com:20611 \
  -u cultclassik.${HOSTNAME}
 {% else %}
 /minebox/ethminer/ethminer -U \
