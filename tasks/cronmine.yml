@@ -10,7 +10,7 @@
 - name: Create getmux script to attach to tmux auto session
   template:
     src: getmux.sh.j2
-    dest: /home/"{{ minebox_svc_acct }}"/getmux.sh
+    dest: "/home/{{ minebox_svc_acct }}/getmux.sh"
     mode: 0770
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
