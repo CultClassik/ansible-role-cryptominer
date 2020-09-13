@@ -2,9 +2,10 @@
 # defaults file for crypto-miner
 
 # nvidia or amd
-mining_type: # docker or script
-gpu_arch:
+mining_type: # none, docker or script
+gpu_arch: # amd or nvidia
 gpu_conf:
+  currency: eth
   model:
   qty:
   pwr:
@@ -24,21 +25,22 @@ minebox_folders:
 - /minebox
 - /minebox/drivers
 
-eth_addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
-
 crypto:
   eth:
+    addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
     pool1: us1.ethermine.org:4444
     pool2: us2.ethermine.org:4444
-
-nvidia_docker_image: nvidia/cuda:11.0-base-ubuntu18.04
+  rvn:
+    addr:
+    pool1: europe.kawpow-hub.miningpoolhub.com:20611
+    pool2: us-east.kawpow-hub.miningpoolhub.com:20611
 
 docker_group_members:
 - ansible
 - "{{ minebox_svc_acct }}"
 
-drivers:
-  nvidia: https://us.download.nvidia.com/XFree86/Linux-x86_64/450.66/NVIDIA-Linux-x86_64-450.66.run
+nvidia:
+  docker_image: nvidia/cuda:11.0-base-ubuntu18.04
 
 minebox_pkgs:
   common:

@@ -18,7 +18,7 @@ Role Variables
 * gpu_arch: nvidia
 
 3. Shared variables:
-* eth_addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
+* crypto.eth.addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
 
 Dependencies
 ------------
