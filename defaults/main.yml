@@ -15,7 +15,7 @@ gpu_conf:
 ethminer_url: https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz
 nbminer_url: https://github.com/NebuTech/NBMiner/releases/download/v31.1/NBMiner_31.1_Linux.tgz
 phoenixminer_archive_source_path: /mnt/software/minebox/miners_linux/PhoenixMiner_5.1c_Linux.tar.gz
-teamredminer_url: teamredminer-v0.7.10-linux.tgz
+teamredminer_url: https://github.com/todxx/teamredminer/releases/download/0.7.10/teamredminer-v0.7.10-linux.tgz
 
 amd_driver_file: amdgpu-pro-20.30-1109583-ubuntu-18.04.tar.xz
 amd_driver_url: https://drivers.amd.com/drivers/linux/{{amd_driver_file}}
