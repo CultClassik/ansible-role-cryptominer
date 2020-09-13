@@ -25,13 +25,13 @@ minebox_folders:
 - /minebox
 - /minebox/drivers
 
-crypto:
-  eth:
-    addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
-    pool1: us1.ethermine.org:4444
-    pool2: us2.ethermine.org:4444
+  crypto:
+    eth:
+      addr: '0xd14E26611492Eac8004322059BEacC153B268fAf'
+      pool1: us1.ethermine.org:4444
+      pool2: us2.ethermine.org:4444
   rvn:
-    addr:
+    addr: none
     pool1: europe.kawpow-hub.miningpoolhub.com:20611
     pool2: us-east.kawpow-hub.miningpoolhub.com:20611
 
