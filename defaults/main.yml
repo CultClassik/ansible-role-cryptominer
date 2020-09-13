@@ -16,14 +16,9 @@ ethminer_url: https://github.com/ethereum-mining/ethminer/releases/download/v0.1
 nbminer_url: https://github.com/NebuTech/NBMiner/releases/download/v31.1/NBMiner_31.1_Linux.tgz
 amd_driver_file: amdgpu-pro-20.30-1109583-ubuntu-18.04.tar.xz
 amd_driver_url: https://drivers.amd.com/drivers/linux/{{amd_driver_file}}
-
-grub_opts: "quiet splash nomodeset"
+phoenixmine_archive_source_path: /mnt/software/minebox/miners_linux/PhoenixMiner_5.1c_Linux.tar.gz
 
 minebox_svc_acct: miner
-
-minebox_folders:
-- /minebox
-- /minebox/drivers
 
 crypto:
   eth:

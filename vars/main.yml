@@ -1,2 +1,7 @@
 ---
 # vars file for crypto-miner
+minebox_folders:
+- /minebox
+- /minebox/drivers
+
+grub_opts: "quiet splash nomodeset"

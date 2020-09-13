@@ -1,0 +1,24 @@
+---
+- name: Check to ensure phoenixminer archive is available
+  stat: 
+    path: "{{ phoenixminer_archive_source_path }}"
+  register: pm_arch_exists
+
+- name: Create phoenixminer directory
+  file:
+    state: directory
+    path: /minebox/phoenixminer
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"
+    mode: 0777
+  when: pm_arch_exists == True
+
+- name: Extract phoenixminer tarball
+  unarchive:
+    remote_src: yes
+    src: "{{ phoenixminer_archive_source_path }}"
+    dest: /minebox/phoenixminer
+    extra_opts: "--strip-components=1"
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"
+  when: pm_arch_exists == True
