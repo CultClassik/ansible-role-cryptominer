@@ -44,6 +44,9 @@
 - name: Download ethminer
   import_tasks: ethminer.yml
 
+- name: Download teamreadminer
+  import_tasks: teamredminer.yml
+
 - name: Copy phoenixminer
   include_tasks: phoenixminer.yml
 
