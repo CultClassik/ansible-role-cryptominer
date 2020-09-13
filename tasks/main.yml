@@ -44,12 +44,14 @@
 - name: Download ethminer
   import_tasks: ethminer.yml
 
-- include: amd-main.yml
+- name: AMD GPU configuration
+  include_tasks: amd-main.yml
   when: gpu_arch == 'amd'
 
 - name: NVidia GPU configuration
   include_tasks: nvidia-main.yml
   when: gpu_arch == 'nvidia'
 
-- include: cronmine.yml
+- name: Configure script-based mining
+  include_tasks: cronmine.yml
   when: mining_type == 'script'
