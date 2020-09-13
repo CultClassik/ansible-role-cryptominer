@@ -27,7 +27,7 @@ minebox_folders:
 
 crypto:
   eth:
-    addr: '0xd14E26611492Eac8004322059BEacC153B268fAf'
+    addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
     pool1: us1.ethermine.org:4444
     pool2: us2.ethermine.org:4444
   rvn:
