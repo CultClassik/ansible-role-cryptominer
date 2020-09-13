@@ -5,6 +5,9 @@
 - name: Download and configure nbminer
   include_tasks: nbminer.yml
 
+- name: Download teamreadminer
+  import_tasks: teamredminer.yml
+
 - name: Check to ensure atiflash archive is available
   stat: 
     path: "{{ atiflash_archive_source_path }}"
