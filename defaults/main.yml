@@ -30,8 +30,8 @@ crypto:
     pool2: us2.ethermine.org:4444
   rvn:
     addr: none
-    pool1: europe.kawpow-hub.miningpoolhub.com:20611
-    pool2: us-east.kawpow-hub.miningpoolhub.com:20611
+    pool1: us-east.kawpow-hub.miningpoolhub.com:20611
+    pool2: europe.kawpow-hub.miningpoolhub.com:20611
 
 docker_group_members:
 - ansible

@@ -8,7 +8,7 @@ ETH_ADDR="{{ crypto.eth.addr }}"
 {% elif (gpu_arch == 'amd'  and gpu_conf.currency == 'rvn') %}
     /minebox/nbminer/nbminer -a kawpow \
       -o stratum+tcp://{{ crypto.rvn.pool1 }} \
-      -o stratum+tcp://{{ crypto.rvn.pool2 }} \
+      -o1 stratum+tcp://{{ crypto.rvn.pool2 }} \
       -u cultclassik.${HOSTNAME}
 {% elif (gpu_arch == 'nvidia' and gpu_conf.currency == 'eth') %}
     /minebox/ethminer/ethminer -U \
