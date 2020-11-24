@@ -26,8 +26,12 @@ minebox_svc_acct: miner
 crypto:
   eth:
     addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
-    pool1: us1.ethermine.org:4444
-    pool2: us2.ethermine.org:4444
+    pool1: us1.ethermine.org
+    pool2: us2.ethermine.org
+    pool_port:
+      ssl: 5555
+      stratum: 4444
+
   rvn:
     addr: none
     pool1: us-east.kawpow-hub.miningpoolhub.com:20611

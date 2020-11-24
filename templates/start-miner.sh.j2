@@ -1,15 +1,7 @@
 #!/bin/bash
 ETH_ADDR="{{ crypto.eth.addr }}"
 {% if (gpu_arch == 'amd' and gpu_conf.currency == 'eth') %}
-    /minebox/phoenixminer -coin eth \
-      -pool {{ crypto.eth.pool1 }} \
-      -pool2 {{ crypto.eth.pool1 }} \
-      -wal {{ crypto.eth.addr }}.${{HOSTNAME}}
-
-    {# /minebox/ethminer/ethminer -G \
-      -P stratum1+tcp://{{ crypto.eth.addr }}.${HOSTNAME}@{{ crypto.eth.pool1 }} \
-      -P stratum1+tcp://{{ crypto.eth.addr }}.${HOSTNAME}@{{ crypto.eth.pool2 }} \
-      --HWMON 1 --report-hr #}
+    /minebox/phoenixminer/start-phoenix.sh
 {% elif (gpu_arch == 'amd'  and gpu_conf.currency == 'rvn') %}
     /minebox/nbminer/nbminer -a kawpow \
       -o stratum+tcp://{{ crypto.rvn.pool1 }} \

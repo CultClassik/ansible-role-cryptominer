@@ -22,3 +22,11 @@
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
   when: pm_arch_exists.stat.exists
+
+- name: Create Phoenix Miner startup script
+  template:
+    src: phoenix-start.sh.j2
+    dest: /minebox/phoenixminer/phoenix-start.sh
+    mode: 0770
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"
