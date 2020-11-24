@@ -10,9 +10,9 @@
   set_fact:
     grubline: >-
       {%- if gpu_arch == 'amd' -%}
-        {{ grub_opts }} amdgpu.vm_fragment_size=9
+        {{ grub_opts }} amdgpu.dc=0 amdgpu.ppfeaturemask=0xffffffff
       {%- else -%}
-        {{ grub_opts }}
+        {{ grub_opts }} nomodeset
       {%- endif -%}
 
 - name: GRUB_CMDLINE_LINUX_DEFAULT
@@ -20,4 +20,4 @@
     path: /etc/default/grub
     regexp: '^GRUB_CMDLINE_LINUX_DEFAULT=.*$'
     line: "GRUB_CMDLINE_LINUX_DEFAULT=\"{{ grubline }}\""
-  notify: Reboot required
+  notify: Update GRUB

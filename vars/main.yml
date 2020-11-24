@@ -4,4 +4,6 @@ minebox_folders:
 - /minebox
 - /minebox/drivers
 
-grub_opts: "quiet splash nomodeset"
+#grub_opts: "quiet splash nomodeset"
+grub_opts: ""text pci=nomsi quiet"
+

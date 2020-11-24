@@ -31,3 +31,7 @@
 - name: Update XDM
   shell: /usr/sbin/update-rc.d xdm defaults & /bin/sync
   notify: Reboot required
+
+- name: Update GRUB
+  shell: /usr/sbin/update-grub
+  notify: Reboot required
