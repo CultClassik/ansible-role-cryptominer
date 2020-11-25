@@ -1,6 +1,8 @@
 #!/bin/bash
 eth_addr={{ crypto.eth.addr }}
-# IMPORTANT: Replace the ETH address with your own ETH wallet address in the -wal option (Rig001 is the name of the rig)
+
+cd /minebox/phoenixminer
+
 ./PhoenixMiner \
   -pool ssl://{{ crypto.eth.pool1 }}:{{ crypto.eth.pool_port['ssl'] }} \
   -pool2 ssl://{{ crypto.eth.pool2 }}:{{ crypto.eth.pool_port['ssl'] }} \
