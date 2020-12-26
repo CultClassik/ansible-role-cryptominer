@@ -13,6 +13,7 @@ gpu_conf:
   mem:
 
 nbminer_version: "35.2"
+nanominer_version: "3.1.4"
 
 ethminer_url: https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz
 phoenixminer_archive_source_path: /mnt/software/minebox/miners_linux/PhoenixMiner_5.1c_Linux.tar.gz
