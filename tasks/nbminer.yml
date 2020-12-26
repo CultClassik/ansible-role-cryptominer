@@ -1,21 +1,24 @@
 ---
-- name: Download nbminer
-  get_url: 
-    url: "{{ nbminer_url }}"
-    dest: /tmp/nbminer.tgz
-
 - name: Create nbminer directory
   file:
     state: directory
-    path: /minebox/nbminer
+    path: "{{item}}"
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
     mode: 0777
+  loop:
+    - /minebox/nbminer
+    - /minebox/nbminer/bin
+
+- name: Download nbminer
+  get_url: 
+    url: "https://github.com/NebuTech/NBMiner/releases/download/v{{ nbminer_version }}/NBMiner_{{ nbminer_version }}_Linux.tgz"
+    dest: /minebox/nbminer
 
 - name: Extract nbminer tarball
   unarchive:
     remote_src: yes
-    src: /tmp/nbminer.tgz
+    src: "/minebox/nbminer/NBMiner_{{ nbminer_version }}_Linux.tgz"
     dest: /minebox/nbminer
     extra_opts: "--strip-components=1"
     owner: "{{ minebox_svc_acct }}"
@@ -23,8 +26,8 @@
 
 - name: Create nbminer startup script
   template:
-    src: start-miner.sh.j2
-    dest: /minebox/start-miner.sh
+    src: start-nbminer.sh.j2
+    dest: /minebox/nbminer/start-nbminer.sh
     mode: 0770
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"

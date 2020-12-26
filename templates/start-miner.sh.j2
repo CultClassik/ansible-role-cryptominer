@@ -3,10 +3,7 @@ ETH_ADDR="{{ crypto.eth.addr }}"
 {% if (gpu_arch == 'amd' and gpu_conf.currency == 'eth') %}
     /minebox/phoenixminer/start-phoenix.sh
 {% elif (gpu_arch == 'amd'  and gpu_conf.currency == 'rvn') %}
-    /minebox/nbminer/nbminer -a kawpow \
-      -o stratum+tcp://{{ crypto.rvn.pool1 }} \
-      -o1 stratum+tcp://{{ crypto.rvn.pool2 }} \
-      -u cultclassik.${HOSTNAME}
+    /minebox/nbminer/start-nbminer.sh
 {% elif (gpu_arch == 'nvidia' and gpu_conf.currency == 'eth') %}
     /minebox/ethminer/ethminer -U \
       -P stratum1+tcp://{{ crypto.eth.addr }}.${HOSTNAME}@{{ crypto.eth.pool1 }} \
