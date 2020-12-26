@@ -1,12 +1,7 @@
 [Kawpow]
 wallet = Rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 coin=Rvn
-rigName = rig1
-email = someemail@org
-pool1 = rvn-eu1.nanopool.org:12433
-pool2 = rvn-eu2.nanopool.org:12433
-pool3 = rvn-us-east1.nanopool.org:12433
-pool4 = rvn-us-west1.nanopool.org:12433
-pool5 = rvn-asia1.nanopool.org:12433
-pool6 = rvn-jp1.nanopool.org:12433
-pool7 = rvn-au1.nanopool.org:12433
+rigName = {{ inventory_hostname_short }}
+email = mplex2000@yahoo.com
+pool1 = {{ crypto.rvn.pool1 }}
+pool2 = {{ crypto.rvn.pool2 }}
