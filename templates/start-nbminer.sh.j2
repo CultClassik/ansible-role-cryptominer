@@ -1,8 +1,6 @@
 #!/bin/sh
 
-POOL_ADDR="us-east.kawpow-hub.miningpoolhub.com:20611"
-
-/minebox/nbminer/nbminer -a kawpow \
+/minebox/nbminer/bin/nbminer -a kawpow \
   -o stratum+tcp://{{ crypto.rvn.pool1 }} \
   -o stratum+tcp://{{ crypto.rvn.pool2 }} \
   -u cultclassik.${HOST_NAME}
