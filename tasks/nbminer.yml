@@ -19,7 +19,7 @@
   unarchive:
     remote_src: yes
     src: "/minebox/nbminer/NBMiner_{{ nbminer_version }}_Linux.tgz"
-    dest: /minebox/nbminer
+    dest: /minebox/nbminer/bin
     extra_opts: "--strip-components=1"
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
