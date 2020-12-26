@@ -12,7 +12,7 @@
   
   - name: Download nanominer
     get_url: 
-      url: "https://github.com/nanopool/nanominer/releases/download/v{{ nanominer_version }}}/nanominer-linux-{{ nanominer_version }}.tar.gz"
+      url: "https://github.com/nanopool/nanominer/releases/download/v{{ nanominer_version }}/nanominer-linux-{{ nanominer_version }}.tar.gz"
       dest: /minebox/nanominer
   
   - name: Extract nanominer tarball
