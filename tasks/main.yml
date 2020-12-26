@@ -13,6 +13,8 @@
     path: /etc/rc.local
     state: touch
     mode: 0744
+    access_time: preserve
+    modification_time: preserve
 
 - name: Update /etc/skel/.bashrc
   lineinfile:
