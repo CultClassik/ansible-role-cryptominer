@@ -1,0 +1,32 @@
+---
+- name: Check to ensure lolminer archive is available
+  stat: 
+    path: "{{ lolminer_archive_source_path }}"
+  register: pm_arch_exists
+
+- name: Create lolminer directory
+  file:
+    state: directory
+    path: /minebox/lolminer
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"
+    mode: 0777
+  when: pm_arch_exists.stat.exists
+
+- name: Extract lolminer tarball
+  unarchive:
+    remote_src: yes
+    src: "{{ lolminer_archive_source_path }}"
+    dest: /minebox/lolminer
+    extra_opts: "--strip-components=1"
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"
+  when: pm_arch_exists.stat.exists
+
+- name: Create Phoenix Miner startup script
+  template:
+    src: start-lolminer.sh.j2
+    dest: /minebox/lolminer/start-lolminer.sh
+    mode: 0770
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"

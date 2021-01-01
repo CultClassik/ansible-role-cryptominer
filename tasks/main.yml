@@ -49,6 +49,9 @@
 - name: Copy phoenixminer
   include_tasks: phoenixminer.yml
 
+- name: Copy lolMiner
+  include_tasks: lolminer.yml
+
 - name: AMD GPU configuration
   include_tasks: amd-main.yml
   when: gpu_arch == 'amd'
