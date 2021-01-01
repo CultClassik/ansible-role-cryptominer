@@ -1,22 +1,33 @@
 ---
-- name: Download teamredminer
-  get_url: 
-    url: "{{ teamredminer_url }}"
-    dest: /tmp/teamredminer.tgz
-
 - name: Create teamredminer directory
   file:
     state: directory
-    path: /minebox/teamredminer
+    path: "{{item}}"
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
     mode: 0777
+  loop:
+    - /minebox/teamredminer
+    - /minebox/teamredminer/bin
+
+- name: Download teamredminer
+  get_url: 
+    url: "https://github.com/todxx/teamredminer/releases/download/{{ teamredminer_version }}/teamredminer-v{{ teamredminer_version }}-linux.tgz"
+    dest: /minebox/teamredminer
 
 - name: Extract teamredminer tarball
   unarchive:
     remote_src: yes
-    src: /tmp/teamredminer.tgz
-    dest: /minebox/teamredminer
+    src: "/minebox/teamredminer/teamredminer-v{{ teamredminer_version }}-linux.tgz"
+    dest: /minebox/teamredminer/bin
     extra_opts: "--strip-components=1"
+    owner: "{{ minebox_svc_acct }}"
+    group: "{{ minebox_svc_acct }}"
+
+- name: Create teamredminer startup script
+  template:
+    src: start-teamredminer.sh.j2
+    dest: /minebox/teamredminer/start-teamredminer.sh
+    mode: 0770
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
