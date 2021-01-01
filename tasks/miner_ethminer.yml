@@ -1,22 +1,25 @@
 ---
-- name: Download ethminer
-  get_url: 
-    url: "{{ ethminer_url }}"
-    dest: /tmp/ethminer.tgz
-
 - name: Create ethminer directory
   file:
     state: directory
-    path: /minebox/ethminer
+    path: "{{item}}"
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
     mode: 0777
+  loop:
+    - /minebox/ethminer
+    - /minebox/ethminer/bin
+
+- name: Download ethminer
+  get_url: 
+    url: "https://github.com/ethereum-mining/ethminer/releases/download/v{{ ethminer_version }}/ethminer-{{ ethminer_version }}-cuda-9-linux-x86_64.tar.gz"
+    dest: /minebox/ethminer
 
 - name: Extract ethminer tarball
   unarchive:
     remote_src: yes
-    src: /tmp/ethminer.tgz
-    dest: /minebox/ethminer
+    src: "/minebox/ethminer/ethminer-{{ ethminer_version }}-cuda-9-linux-x86_64.tar.gz"
+    dest: /minebox/ethminer/bin
     extra_opts: "--strip-components=1"
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"

@@ -5,7 +5,7 @@ ETH_ADDR="{{ crypto.eth.addr }}"
 {% elif (gpu_arch == 'amd'  and gpu_conf.currency == 'rvn') %}
     /minebox/nbminer/start-nbminer.sh
 {% elif (gpu_arch == 'nvidia' and gpu_conf.currency == 'eth') %}
-    /minebox/ethminer/ethminer -U \
+    /minebox/ethminer/bin/ethminer -U \
       -P stratum1+tcp://{{ crypto.eth.addr }}.${HOSTNAME}@{{ crypto.eth.pool1 }} \
       -P stratum1+tcp://{{ crypto.eth.addr }}.${HOSTNAME}@{{ crypto.eth.pool2 }} \
       --HWMON 1 --report-hr
