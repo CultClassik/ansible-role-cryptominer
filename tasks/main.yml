@@ -51,6 +51,9 @@
   include_tasks: nvidia-main.yml
   when: gpu_arch == 'nvidia'
 
+- name: Download miners
+  include: miners.yml
+
 - name: Create miner startup script
   template:
     src: start-miner.sh.j2
