@@ -1,29 +1,30 @@
 ---
-- name: Check to ensure lolminer archive is available
-  stat: 
-    path: "{{ lolminer_archive_source_path }}"
-  register: pm_arch_exists
-
 - name: Create lolminer directory
   file:
     state: directory
-    path: /minebox/lolminer
+    path: "{{item}}"
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
     mode: 0777
-  when: pm_arch_exists.stat.exists
+  loop:
+    - /minebox/lolminer
+    - /minebox/lolminer/bin
+
+- name: Download lolminer
+  get_url: 
+    url: "https://github.com/Lolliedieb/lolMiner-releases/releases/download/{{ lolminer_version }}/lolMiner_v{{ lolminer_version }}_Lin64.tar.gz"
+    dest: /minebox/lolminer
 
 - name: Extract lolminer tarball
   unarchive:
     remote_src: yes
-    src: "{{ lolminer_archive_source_path }}"
-    dest: /minebox/lolminer
+    src: "/minebox/lolminer/lolminer_{{ lolminer_version }}_Linux.tgz"
+    dest: /minebox/lolminer/bin
     extra_opts: "--strip-components=1"
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
-  when: pm_arch_exists.stat.exists
 
-- name: Create Phoenix Miner startup script
+- name: Create lolminer startup script
   template:
     src: start-lolminer.sh.j2
     dest: /minebox/lolminer/start-lolminer.sh
