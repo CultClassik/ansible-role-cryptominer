@@ -66,3 +66,14 @@
 - name: Configure crontab for script-based mining
   include_tasks: cronmine.yml
   when: mining_type == 'script'
+
+- name: Reboot twice a day to bring downed miners back online
+  ansible.builtin.cron:
+    special_time: daily
+    hour: "{{ item }}"
+    user: root
+    name: health_reboot
+    job: /sbin/shutdown -r now
+  loop:
+    - 3
+    - 15
