@@ -18,7 +18,7 @@
 - name: Extract lolminer tarball
   unarchive:
     remote_src: yes
-    src: "/minebox/lolminer/lolminer_{{ lolminer_version }}_Linux.tgz"
+    src: "/minebox/lolminer/lolMiner_v{{ lolminer_version }}_Lin64.tar.gz"
     dest: /minebox/lolminer/bin
     extra_opts: "--strip-components=1"
     owner: "{{ minebox_svc_acct }}"
