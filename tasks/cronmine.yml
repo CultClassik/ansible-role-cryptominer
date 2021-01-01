@@ -16,7 +16,7 @@
     group: "{{ minebox_svc_acct }}"
 
 - name: crontab to run mine script
-  cron:
+  ansible.builtin.cron:
     special_time: reboot
     user: "{{ minebox_svc_acct }}"
     name: bootmux

@@ -69,11 +69,7 @@
 
 - name: Reboot twice a day to bring downed miners back online
   ansible.builtin.cron:
-    special_time: daily
-    hour: "{{ item }}"
+    hour: "1,13"
     user: root
     name: health_reboot
     job: /sbin/shutdown -r now
-  loop:
-    - 3
-    - 15
