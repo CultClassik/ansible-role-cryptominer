@@ -1,6 +1,6 @@
 #!/bin/bash
 
-POOL={{ crypto.eth.pool1 }}
+POOL={{ crypto.eth.pool1 }}:{{ crypto.eth.pool_port.stratum }}
 WALLET={{ crypto.eth.addr }}
 
 ./bin/lolMiner --algo ETHASH --pool $POOL --user $WALLET.$HOSTNAME $@ --4g-alloc-size 4076
