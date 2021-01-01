@@ -2,15 +2,6 @@
 # - name: Download AMD GPU-Pro driver
 #  include_tasks: amd-driver.yml
 
-- name: Download and configure nbminer
-  include_tasks: nbminer.yml
-
-- name: Download and configure nanominer
-  include_tasks: nanominer.yml
-
-- name: Download teamreadminer
-  import_tasks: teamredminer.yml
-
 - name: Check to ensure atiflash archive is available
   stat: 
     path: "{{ atiflash_archive_source_path }}"

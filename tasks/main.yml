@@ -43,15 +43,6 @@
   import_role:
     name: docker
 
-- name: Download ethminer
-  import_tasks: ethminer.yml
-
-- name: Copy phoenixminer
-  include_tasks: phoenixminer.yml
-
-- name: Copy lolMiner
-  include_tasks: lolminer.yml
-
 - name: AMD GPU configuration
   include_tasks: amd-main.yml
   when: gpu_arch == 'amd'
@@ -67,6 +58,7 @@
     mode: 0770
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
+  when: mining_type == 'script'
 
 - name: Configure crontab for script-based mining
   include_tasks: cronmine.yml
