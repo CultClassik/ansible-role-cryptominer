@@ -3,4 +3,4 @@
 POOL={{ crypto.eth.pool1 }}:{{ crypto.eth.pool_port.stratum }}
 WALLET={{ crypto.eth.addr }}
 
-/minebox/nanominer/bin/lolMiner --algo ETHASH --pool $POOL --user $WALLET.$HOSTNAME $@ --4g-alloc-size 4076
+/minebox/lolminer/bin/lolMiner --algo ETHASH --pool $POOL --user $WALLET.$HOSTNAME $@ --4g-alloc-size 4076
