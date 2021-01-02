@@ -6,7 +6,7 @@ tmux send-keys -t 1 "htop" C-m
 {% if (mining_type == 'script') %}
 tmux split-window -h
 tmux send-keys -t 2 "/bin/bash -c /minebox/start-miner.sh" C-m
-{% endif %}}
+{% endif %}
 
 {% if (mining_type == 'docker') %}
 {% for gpuid in range(gpu_conf.qty) %}
@@ -14,6 +14,6 @@ tmux new-window
 tmux rename-window -t {{ gpuid + 1 }} "gpu{{ gpuid }}"
 tmux send-keys -t 2 docker logs -f --tail 50 gpu-{{ gpuid }}
 {% endfor %}
-{% endif %}}
+{% endif %}
 
 tmux select-pane -t 0
