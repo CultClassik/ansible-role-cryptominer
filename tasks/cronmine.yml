@@ -20,4 +20,4 @@
     special_time: reboot
     user: "{{ minebox_svc_acct }}"
     name: bootmux
-    job: sleep 1m && /minebox/bootmux.sh
+    job: sleep 10s && /minebox/bootmux.sh
