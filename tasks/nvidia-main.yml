@@ -10,7 +10,7 @@
 
 - name: Install Nvidia driver
   include_role:
-    name: nvidia-driver
+    name: nvidia.nvidia-driver
 
 - name: Create xorg reconfig script (conf-nv.sh)
   copy:
