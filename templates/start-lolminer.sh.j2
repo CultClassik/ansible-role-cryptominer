@@ -4,7 +4,7 @@ POOL="{{ crypto.eth.pool1 }}:{{ crypto.eth.pool_port.stratum }}"
 WALLET="{{ crypto.eth.addr }}"
 
 # for ethermine.org
-#/minebox/lolminer/bin/lolMiner --algo ETHASH --pool $POOL --user $WALLET.$HOSTNAME $@ --4g-alloc-size 4076
+#/minebox/lolminer/bin/lolMiner --algo ETHASH --pool $POOL --user $WALLET.$HOSTNAME $@ {% if  gpu_arch == 'amd' %} --4g-alloc-size 4076 {% endif %}
 
 # for miningpoolhub.com
-/minebox/lolminer/bin/lolMiner --algo ETHASH --pool $POOL --user cultclassik.$HOSTNAME --pass x --4g-alloc-size 4076
+/minebox/lolminer/bin/lolMiner --algo ETHASH --pool $POOL --user cultclassik.$HOSTNAME --pass x {% if  gpu_arch == 'amd' %} --4g-alloc-size 4076 {% endif %}

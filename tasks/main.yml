@@ -1,4 +1,7 @@
 ---
+- name: Configure serice account
+  import_tasks: service_account.yml
+
 - name: ensure file exists - /etc/apt/apt.conf.d/20auto-upgrades
   ansible.builtin.file:
     path: /etc/apt/apt.conf.d/20auto-upgrades
@@ -32,11 +35,6 @@
     line: export DISPLAY=:0
   notify: Update XDM
 
-- name: Configure serice account
-  import_tasks: service_account.yml
-  tags:
-  - svc_acct
-
 - name: Create minebox directories
   file:
     state: directory
@@ -51,6 +49,9 @@
     update_cache: yes
     pkg: "{{ minebox_pkgs.common }}"
 
+- name: Download miners
+  include: miners.yml
+
 - name: Install docker
   import_role:
     name: docker
@@ -62,9 +63,6 @@
 - name: NVidia GPU configuration
   include_tasks: nvidia-main.yml
   when: gpu_arch == 'nvidia'
-
-- name: Download miners
-  include: miners.yml
 
 - name: Create miner startup script
   template:
