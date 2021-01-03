@@ -1,4 +1,14 @@
 ---
+- name: ensure file exists - /etc/apt/apt.conf.d/20auto-upgrades
+  ansible.builtin.file:
+    path: /etc/apt/apt.conf.d/20auto-upgrades
+    state: touch
+    mode: u=rw,g=r,o=r
+    owner: root
+    group: root
+    access_time: preserve
+    modification_time: preserve
+
 - name: Disable apt auto upgrades
   lineinfile:
     path: /etc/apt/apt.conf.d/20auto-upgrades
