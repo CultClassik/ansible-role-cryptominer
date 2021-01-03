@@ -49,9 +49,9 @@
   include_tasks: amd-main.yml
   when: gpu_arch == 'amd'
 
-- name: NVidia GPU configuration
-  include_tasks: nvidia-main.yml
-  when: gpu_arch == 'nvidia'
+# - name: NVidia GPU configuration
+#   include_tasks: nvidia-main.yml
+#   when: gpu_arch == 'nvidia'
 
 - name: Download miners
   include: miners.yml
