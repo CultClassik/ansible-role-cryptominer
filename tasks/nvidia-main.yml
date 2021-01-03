@@ -8,9 +8,9 @@
     line: CUDA_DEVICE_ORDER=PCI_BUS_ID
   notify: Reboot required
 
-- name: Install Nvidia driver
-  include_role:
-    name: nvidia.nvidia_driver
+# - name: Install Nvidia driver
+#   include_role:
+#     name: nvidia.nvidia_driver
 
 - name: Create xorg reconfig script (conf-nv.sh)
   copy:
