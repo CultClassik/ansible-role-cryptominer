@@ -24,6 +24,8 @@
 
 - name: Configure serice account
   import_tasks: service_account.yml
+  tags:
+  - svc_acct
 
 - name: Create minebox directories
   file:
