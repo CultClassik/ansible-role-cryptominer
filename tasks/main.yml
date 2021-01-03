@@ -63,14 +63,6 @@
 - name: NVidia GPU configuration
   include_tasks: nvidia-main.yml
   when: gpu_arch == 'nvidia'
-
-- name: Create miner startup script
-  template:
-    src: start-miner.sh.j2
-    dest: /minebox/start-miner.sh
-    mode: 0770
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
   
 - name: Configure crontab for script-based mining
   include_tasks: cronmine.yml
