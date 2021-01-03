@@ -71,8 +71,7 @@
     mode: 0770
     owner: "{{ minebox_svc_acct }}"
     group: "{{ minebox_svc_acct }}"
-  when: mining_type == 'script'
-
+  
 - name: Configure crontab for script-based mining
   include_tasks: cronmine.yml
   when: mining_type == 'script'
