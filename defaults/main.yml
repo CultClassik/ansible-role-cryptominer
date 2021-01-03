@@ -26,6 +26,7 @@ amd_driver_url: https://drivers.amd.com/drivers/linux/{{amd_driver_file}}
 atiflash_archive_source_path: /mnt/software/minebox/tools_linux/atiflash_linux.tar.xz
 
 minebox_svc_acct: miner
+minebox_ssh_pub_key: https://github.com/cultclassik.keys
 
 crypto:
   eth:
