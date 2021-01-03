@@ -37,3 +37,6 @@ dependencies: {}
  
 #- src: git+https://github.com/NVIDIA/ansible-role-nvidia-driver.git
 #  name: nvidia-driver
+
+collections:
+- ansible.posix
