@@ -27,6 +27,7 @@ atiflash_archive_source_path: /mnt/software/minebox/tools_linux/atiflash_linux.t
 
 minebox_svc_acct: miner
 minebox_ssh_pub_key: https://github.com/cultclassik.keys
+default_shell: /bin/bash
 
 crypto:
   eth:
