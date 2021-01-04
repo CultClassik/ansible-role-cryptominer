@@ -2,7 +2,7 @@
 - name: Install X11 packages
   apt:
     update_cache: yes
-    pkg: "{{ minebox_pkgs.xorg }}"
+    pkg: "{{ crminer_pkgs.xorg }}"
 
 - name: Create xorg reconfig script (conf-nv.sh)
   copy:
@@ -33,8 +33,8 @@
     state: touch
     access_time: preserve
     modification_time: preserve
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
     mode: 0774
   
 - name: xinit_stuff

@@ -1,35 +1,7 @@
 ---
 # defaults file for crypto-miner
 
-# nvidia or amd
-mining_type: # none, docker or script
-gpu_arch: # amd or nvidia
-gpu_conf:
-  currency: eth
-  model:
-  qty:
-  pwr:
-  gpu:
-  mem:
-
-nbminer_version: "35.2"
-nanominer_version: "3.1.4"
-lolminer_version: "1.17"
-ethminer_version: "0.18.0"
-phoenixminer_vesion: "5.1c"
-teamredminer_version: "0.7.10"
-
-phoenixminer_archive_source_path: "/mnt/software/minebox/miners_linux/PhoenixMiner_{{ phoenixminer_vesion }}_Linux.tar.gz"
-
-amd_driver_file: amdgpu-pro-20.30-1109583-ubuntu-18.04.tar.xz
-amd_driver_url: https://drivers.amd.com/drivers/linux/{{amd_driver_file}}
-atiflash_archive_source_path: /mnt/software/minebox/tools_linux/atiflash_linux.tar.xz
-
-minebox_svc_acct: miner
-minebox_ssh_pub_key: https://github.com/cultclassik.keys
-default_shell: /bin/bash
-
-crypto:
+crminer_crypto:
   eth:
     addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
     pool1: us1.ethermine.org # us-east.ethash-hub.miningpoolhub.com
@@ -43,14 +15,40 @@ crypto:
     pool1: us-east.kawpow-hub.miningpoolhub.com:20611
     pool2: europe.kawpow-hub.miningpoolhub.com:20611
 
+crminer_type: # none, docker or script
+crminer_gpu_arch: # amd or nvidia
+crminer_gpu_conf:
+  currency: eth
+  model:
+  qty:
+  pwr:
+  gpu:
+  mem:
+
+crminer_nbminer_version: "35.2"
+crminer_nanominer_version: "3.1.4"
+crminer_lolminer_version: "1.17"
+crminer_ethminer_version: "0.18.0"
+crminer_teamredminer_version: "0.7.10"
+crminer_phoenixminer_vesion: "5.1c"
+crminer_phoenixminer_archive_source_path: "/mnt/software/minebox/miners_linux/PhoenixMiner_{{ crminer_phoenixminer_vesion }}_Linux.tar.gz"
+
+crminer_amd_driver_file: amdgpu-pro-20.30-1109583-ubuntu-18.04.tar.xz
+crminer_amd_driver_url: https://drivers.amd.com/drivers/linux/{{crminer_amd_driver_file}}
+crminer_atiflash_archive_source_path: /mnt/software/minebox/tools_linux/atiflash_linux.tar.xz
+
+crminer_svc_acct: miner
+crminer_svc_acct_ssh_pub_key: https://github.com/cultclassik.keys
+crminer_svc_acct_default_shell: /bin/bash
+
+# used by docker role
 docker_group_members:
-- ansible
-- "{{ minebox_svc_acct }}"
+  - ansible
+  - "{{ crminer_svc_acct }}"
 
-nvidia:
-  docker_image: nvidia/cuda:11.0-base-ubuntu18.04
+crminer_docker_image_nvidia: nvidia/cuda:11.0-base-ubuntu18.04
 
-minebox_pkgs:
+crminer_pkgs:
   common:
   - xzip
   - unzip

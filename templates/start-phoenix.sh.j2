@@ -1,11 +1,11 @@
 #!/bin/bash
-eth_addr={{ crypto.eth.addr }}
+eth_addr={{ crminer_crypto.eth.addr }}
 
 cd /minebox/phoenixminer
 
 ./PhoenixMiner \
-  -pool ssl://{{ crypto.eth.pool1 }}:{{ crypto.eth.pool_port['ssl'] }} \
-  -pool2 ssl://{{ crypto.eth.pool2 }}:{{ crypto.eth.pool_port['ssl'] }} \
+  -pool ssl://{{ crminer_crypto.eth.pool1 }}:{{ crminer_crypto.eth.pool_port['ssl'] }} \
+  -pool2 ssl://{{ crminer_crypto.eth.pool2 }}:{{ crminer_crypto.eth.pool_port['ssl'] }} \
   -coin eth \
   -amd -acm \
   -clKernel 2 \

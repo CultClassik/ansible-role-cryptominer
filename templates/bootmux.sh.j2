@@ -3,13 +3,13 @@ tmux new-session -d -s "minebox" \; split-window -v
 tmux rename-window -t 0 "control"
 tmux send-keys -t 1 "htop" C-m
 
-{% if (mining_type == 'script') %}
+{% if (crminer_type == 'script') %}
 tmux split-window -h
 tmux send-keys -t 2 "/bin/bash -c /minebox/start-miner.sh" C-m
 {% endif %}
 
-{% if (mining_type == 'docker') %}
-{% for gpuid in range(gpu_conf.qty) %}
+{% if (crminer_type == 'docker') %}
+{% for gpuid in range(crminer_gpu_conf.qty) %}
 tmux new-window 
 tmux rename-window -t {{ gpuid + 1 }} "gpu{{ gpuid }}"
 tmux send-keys -t 2 docker logs -f --tail 50 gpu-{{ gpuid }}

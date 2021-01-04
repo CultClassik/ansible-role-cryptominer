@@ -16,13 +16,13 @@ Role Variables
 --------------
 
 1. AMD GPUs:
-* gpu_arch: amd
+* crminer_gpu_arch: amd
 
 2. NVidia GPUs:
-* gpu_arch: nvidia
+* crminer_gpu_arch: nvidia
 
 3. Shared variables:
-* crypto.eth.addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
+* crminer_crypto.eth.addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
 
 Dependencies
 ------------

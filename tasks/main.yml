@@ -39,15 +39,15 @@
   file:
     state: directory
     path: "{{ item }}"
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
     mode: 0777
   loop: "{{ minebox_folders }}"
 
 - name: Install common packages
   apt:
     update_cache: yes
-    pkg: "{{ minebox_pkgs.common }}"
+    pkg: "{{ crminer_pkgs.common }}"
 
 - name: Download miners
   include: miners.yml
@@ -58,15 +58,15 @@
 
 - name: AMD GPU configuration
   include_tasks: amd-main.yml
-  when: gpu_arch == 'amd'
+  when: crminer_gpu_arch == 'amd'
 
 - name: NVidia GPU configuration
   include_tasks: nvidia-main.yml
-  when: gpu_arch == 'nvidia'
+  when: crminer_gpu_arch == 'nvidia'
   
 - name: Configure crontab for script-based mining
   include_tasks: cronmine.yml
-  when: mining_type == 'script'
+  when: crminer_type == 'script'
 
 - name: Reboot twice a day to bring downed miners back online
   ansible.builtin.cron:

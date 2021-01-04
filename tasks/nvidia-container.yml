@@ -8,8 +8,8 @@
     group: root
   vars:
     gpu_id: "{{ item }}"
-  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
-  when: gpu_conf is defined and mining_type == 'docker'
+  with_sequence: start=0 end={{ crminer_gpu_conf.qty - 1 }}
+  when: crminer_gpu_conf is defined and crminer_type == 'docker'
 
 - name: Generate start scripts for GPU miners
   template:
@@ -20,8 +20,8 @@
     group: root
   vars:
     gpu_id: "{{ item }}"
-  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
-  when: gpu_conf is defined and mining_type == 'docker'
+  with_sequence: start=0 end={{ crminer_gpu_conf.qty - 1 }}
+  when: crminer_gpu_conf is defined and crminer_type == 'docker'
 
 - name: Generate unit files for GPU miners
   template:
@@ -29,22 +29,22 @@
     dest: /etc/systemd/system/gpu-{{ item }}.service
   vars:
     gpu_id: "{{ item }}"
-  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
-  when: gpu_conf is defined
-  notify: Reload systemd units and mining_type == 'docker'
+  with_sequence: start=0 end={{ crminer_gpu_conf.qty - 1 }}
+  when: crminer_gpu_conf is defined
+  notify: Reload systemd units and crminer_type == 'docker'
 
 - name: Enable and start miner container services
   systemd:
     name: gpu-{{ item }}
     enabled: yes
     state: started
-  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
-  when: mining_type == 'docker'
+  with_sequence: start=0 end={{ crminer_gpu_conf.qty - 1 }}
+  when: crminer_type == 'docker'
 
 - name: Disable and stop miner container services
   systemd:
     name: gpu-{{ item }}
     enabled: no
     state: stopped
-  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
-  when: mining_type != 'docker'
+  with_sequence: start=0 end={{ crminer_gpu_conf.qty - 1 }}
+  when: crminer_type != 'docker'

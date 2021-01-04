@@ -1,6 +1,6 @@
 #!/bin/sh
 
 /minebox/nbminer/bin/nbminer -a kawpow \
-  -o stratum+tcp://{{ crypto.rvn.pool1 }} \
-  --o1 stratum+tcp://{{ crypto.rvn.pool2 }} \
+  -o stratum+tcp://{{ crminer_crypto.rvn.pool1 }} \
+  --o1 stratum+tcp://{{ crminer_crypto.rvn.pool2 }} \
   -u cultclassik.${HOST_NAME}

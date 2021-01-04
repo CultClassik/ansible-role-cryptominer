@@ -9,7 +9,7 @@
 - name: Generate GRUB_CMDLINE_LINUX_DEFAULT
   set_fact:
     grubline: >-
-      {%- if gpu_arch == 'amd' -%}
+      {%- if crminer_gpu_arch == 'amd' -%}
         {{ grub_opts }} amdgpu.dc=0 amdgpu.ppfeaturemask=0xffffffff
       {%- else -%}
         {{ grub_opts }} nomodeset

@@ -16,4 +16,4 @@
       - /minebox/start-miner.sh:/miner.sh:ro
       - /minebox/ethminer:/minebox/ethminer:ro
     entrypoint: /miner.sh
-  with_sequence: start=0 end={{ gpu_conf.qty - 1 }}
+  with_sequence: start=0 end={{ crminer_gpu_conf.qty - 1 }}
