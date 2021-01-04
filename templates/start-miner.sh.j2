@@ -2,13 +2,19 @@
 ETH_ADDR="{{ crypto.eth.addr }}"
 {% if (gpu_arch == 'amd' and gpu_conf.currency == 'eth') %}
     /minebox/lolminer/start-lolminer.sh
+
 {% elif (gpu_arch == 'amd'  and gpu_conf.currency == 'rvn') %}
     /minebox/nbminer/start-nbminer.sh
-{% elif (gpu_arch == 'nvidia' and gpu_conf.currency == 'eth') %}
+
+{% elif (gpu_arch == 'nvidia' and gpu_conf.currency == 'eth' and mining_type == 'docker') %}
     /minebox/ethminer/bin/ethminer -U \
       -P stratum1+tcp://{{ crypto.eth.addr }}.${HOSTNAME}@{{ crypto.eth.pool1 }} \
       -P stratum1+tcp://{{ crypto.eth.addr }}.${HOSTNAME}@{{ crypto.eth.pool2 }} \
       --HWMON 1 --report-hr
+
+{% else %}
+    /minebox/lolminer/start-lolminer.sh
+
 {% endif %}
 
 # ethminer options...

@@ -31,11 +31,11 @@ minebox_ssh_pub_key: https://github.com/cultclassik.keys
 crypto:
   eth:
     addr: '0xeA2bb2f3B2d8EFCb9ac561347e606fF92aF0C763'
-    pool1: us-east.ethash-hub.miningpoolhub.com # us1.ethermine.org
-    pool2: europe.ethash-hub.miningpoolhub.com # us2.ethermine.org
+    pool1: us1.ethermine.org # us-east.ethash-hub.miningpoolhub.com
+    pool2: us2.ethermine.org # europe.ethash-hub.miningpoolhub.com
     pool_port:
       ssl: 5555
-      stratum: 20536 #4444
+      stratum: 4444 # 20536
 
   rvn:
     addr: none
