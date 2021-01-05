@@ -9,6 +9,7 @@
 
 - name: Download and configure nbminer
   include_tasks: miner_nbminer.yml
+  when: crypto.rvn is defined
 
 - name: Download and configure nanominer
   include_tasks: miner_nanominer.yml
