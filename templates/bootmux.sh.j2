@@ -1,9 +1,17 @@
 #!/bin/bash
-tmux new-session -d -s "minebox" \; split-window -v \; rename-window -t 0 "control" \; send-keys -t 1 "htop" C-m
+
+sesh="minebox"
+
+tmux new-session -d -s $sesh 
+tmux split-window -v -t $sesh:0
+tmux rename-window -t $sesh:0 "control"
+tmux send-keys -t $sesh:0.1 "htop" C-m
+
+tmux split-window -h -t $sesh:0.1
 
 {% if (crminer_type == 'script') %}
 tmux split-window -h
-tmux send-keys -t 2 "/bin/bash -c /minebox/start-miner.sh" C-m
+tmux send-keys -t $sesh:0.2 "/bin/bash -c /minebox/start-miner.sh" C-m
 {% endif %}
 
 {% if (crminer_type == 'docker') %}
@@ -14,4 +22,4 @@ tmux send-keys -t 2 docker logs -f --tail 50 gpu-{{ gpuid }}
 {% endfor %}
 {% endif %}
 
-tmux select-pane -t 0
+tmux select-pane -t $sesh:0.0
