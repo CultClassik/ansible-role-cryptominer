@@ -1,7 +1,5 @@
 #!/bin/bash
-tmux new-session -d -s "minebox" \; split-window -v
-tmux rename-window -t 0 "control"
-tmux send-keys -t 1 "htop" C-m
+tmux new-session -d -s "minebox" \; split-window -v \; rename-window -t 0 "control" \; send-keys -t 1 "htop" C-m
 
 {% if (crminer_type == 'script') %}
 tmux split-window -h

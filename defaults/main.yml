@@ -9,7 +9,6 @@ crminer_crypto:
     pool_port:
       ssl: 5555
       stratum: 4444 # 20536
-
   rvn:
     addr: none
     pool1: us-east.kawpow-hub.miningpoolhub.com:20611
