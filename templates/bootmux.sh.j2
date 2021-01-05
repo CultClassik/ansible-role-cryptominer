@@ -7,10 +7,9 @@ tmux split-window -v -t $sesh:0
 tmux rename-window -t $sesh:0 "control"
 tmux send-keys -t $sesh:0.1 "htop" C-m
 
-tmux split-window -h -t $sesh:0.1
 
 {% if (crminer_type == 'script') %}
-tmux split-window -h
+tmux split-window -h -t $sesh:0.1
 tmux send-keys -t $sesh:0.2 "/bin/bash -c /minebox/start-miner.sh" C-m
 {% endif %}
 
