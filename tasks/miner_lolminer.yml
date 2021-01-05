@@ -3,8 +3,8 @@
   file:
     state: directory
     path: "{{item}}"
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
     mode: 0777
   loop:
     - /minebox/lolminer
@@ -12,22 +12,22 @@
 
 - name: Download lolminer
   get_url: 
-    url: "https://github.com/Lolliedieb/lolMiner-releases/releases/download/{{ lolminer_version }}/lolMiner_v{{ lolminer_version }}_Lin64.tar.gz"
+    url: "https://github.com/Lolliedieb/lolMiner-releases/releases/download/{{ crminer_lolminer_version }}/lolMiner_v{{ crminer_lolminer_version }}_Lin64.tar.gz"
     dest: /minebox/lolminer
 
 - name: Extract lolminer tarball
   unarchive:
     remote_src: yes
-    src: "/minebox/lolminer/lolMiner_v{{ lolminer_version }}_Lin64.tar.gz"
+    src: "/minebox/lolminer/lolMiner_v{{ crminer_lolminer_version }}_Lin64.tar.gz"
     dest: /minebox/lolminer/bin
     extra_opts: "--strip-components=1"
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
 
 - name: Create lolminer startup script
   template:
     src: start-lolminer.sh.j2
     dest: /minebox/lolminer/start-lolminer.sh
     mode: 0770
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"

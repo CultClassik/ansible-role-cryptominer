@@ -4,8 +4,8 @@
     src: start-miner.sh.j2
     dest: /minebox/start-miner.sh
     mode: 0770
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
 
 - name: Download and configure nbminer
   include_tasks: miner_nbminer.yml

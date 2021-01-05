@@ -18,8 +18,8 @@ bindkey -m "^[k" stuff ^b             # move up one page
 bindkey -m "^k" stuff k               # move up one line
 
 # screens for gpu miners
-{% for gpuid in range(gpu_conf.qty) %}
-screen -t {{ gpuid }}-{{ gpu_conf.model }} docker logs -f --tail 50 gpu-{{ gpuid }}
+{% for gpuid in range(crminer_gpu_conf.qty) %}
+screen -t {{ gpuid }}-{{ crminer_gpu_conf.model }} docker logs -f --tail 50 gpu-{{ gpuid }}
 {% endfor %}
 
 screen -t system htop

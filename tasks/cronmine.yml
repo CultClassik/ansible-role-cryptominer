@@ -1,23 +1,23 @@
 ---
-- name: Create bootmux script to run default "{{ minebox_svc_acct }}" script
+- name: Create bootmux script to run default "{{ crminer_svc_acct }}" script
   template:
     src: bootmux.sh.j2
     dest: /minebox/bootmux.sh
     mode: 0770
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
 
 - name: Create getmux script to attach to tmux auto session
   template:
     src: getmux.sh.j2
-    dest: "/home/{{ minebox_svc_acct }}/getmux.sh"
+    dest: "/home/{{ crminer_svc_acct }}/getmux.sh"
     mode: 0770
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
 
 - name: crontab to run mine script
   ansible.builtin.cron:
     special_time: reboot
-    user: "{{ minebox_svc_acct }}"
+    user: "{{ crminer_svc_acct }}"
     name: bootmux
     job: sleep 10s && /minebox/bootmux.sh

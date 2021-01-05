@@ -17,8 +17,8 @@
     src: conf-nv.sh
     dest: /minebox/conf-nv.sh
     mode: 0774
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
   notify: execute conf-nv.sh
 
 - name: Generate Nvidia overclock script
@@ -26,8 +26,8 @@
     src: nvoc.sh.j2
     dest: /minebox/nvoc.sh
     mode: 0774
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
   notify: execute nvoc.sh
 
 - name: crontab to run nvoc script

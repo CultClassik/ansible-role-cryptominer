@@ -1,15 +1,15 @@
 #!/bin/bash
-ETH_ADDR="{{ crypto.eth.addr }}"
-{% if (gpu_arch == 'amd' and gpu_conf.currency == 'eth') %}
+ETH_ADDR="{{ crminer_crypto.eth.addr }}"
+{% if (crminer_gpu_arch == 'amd' and crminer_gpu_conf.currency == 'eth') %}
     /minebox/lolminer/start-lolminer.sh
 
-{% elif (gpu_arch == 'amd'  and gpu_conf.currency == 'rvn') %}
+{% elif (crminer_gpu_arch == 'amd'  and crminer_gpu_conf.currency == 'rvn') %}
     /minebox/nbminer/start-nbminer.sh
 
-{% elif (gpu_arch == 'nvidia' and gpu_conf.currency == 'eth' and mining_type == 'docker') %}
+{% elif (crminer_gpu_arch == 'nvidia' and crminer_gpu_conf.currency == 'eth' and crminer_type == 'docker') %}
     /minebox/ethminer/bin/ethminer -U \
-      -P stratum1+tcp://{{ crypto.eth.addr }}.${HOSTNAME}@{{ crypto.eth.pool1 }} \
-      -P stratum1+tcp://{{ crypto.eth.addr }}.${HOSTNAME}@{{ crypto.eth.pool2 }} \
+      -P stratum1+tcp://{{ crminer_crypto.eth.addr }}.${HOSTNAME}@{{ crminer_crypto.eth.pool1 }} \
+      -P stratum1+tcp://{{ crminer_crypto.eth.addr }}.${HOSTNAME}@{{ crminer_crypto.eth.pool2 }} \
       --HWMON 1 --report-hr
 
 {% else %}
@@ -21,6 +21,6 @@ ETH_ADDR="{{ crypto.eth.addr }}"
 # /minebox/ethminer/ethminer -G \
 # --cu-devices 0
 # --opencl-devices 0
-#-P stratum1+tcp://${ETH_ADDR}.${HOSTNAME}@{{ crypto.eth.pool1 }} \
-#-P stratum1+tcp://${ETH_ADDR}.${HOSTNAME}@{{ crypto.eth.pool2 }}
+#-P stratum1+tcp://${ETH_ADDR}.${HOSTNAME}@{{ crminer_crypto.eth.pool1 }} \
+#-P stratum1+tcp://${ETH_ADDR}.${HOSTNAME}@{{ crminer_crypto.eth.pool2 }}
 

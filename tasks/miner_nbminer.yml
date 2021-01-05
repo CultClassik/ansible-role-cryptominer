@@ -3,8 +3,8 @@
   file:
     state: directory
     path: "{{item}}"
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
     mode: 0777
   loop:
     - /minebox/nbminer
@@ -12,22 +12,22 @@
 
 - name: Download nbminer
   get_url: 
-    url: "https://github.com/NebuTech/NBMiner/releases/download/v{{ nbminer_version }}/NBMiner_{{ nbminer_version }}_Linux.tgz"
+    url: "https://github.com/NebuTech/NBMiner/releases/download/v{{ crminer_nbminer_version }}/NBMiner_{{ crminer_nbminer_version }}_Linux.tgz"
     dest: /minebox/nbminer
 
 - name: Extract nbminer tarball
   unarchive:
     remote_src: yes
-    src: "/minebox/nbminer/NBMiner_{{ nbminer_version }}_Linux.tgz"
+    src: "/minebox/nbminer/NBMiner_{{ crminer_nbminer_version }}_Linux.tgz"
     dest: /minebox/nbminer/bin
     extra_opts: "--strip-components=1"
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"
 
 - name: Create nbminer startup script
   template:
     src: start-nbminer.sh.j2
     dest: /minebox/nbminer/start-nbminer.sh
     mode: 0770
-    owner: "{{ minebox_svc_acct }}"
-    group: "{{ minebox_svc_acct }}"
+    owner: "{{ crminer_svc_acct }}"
+    group: "{{ crminer_svc_acct }}"

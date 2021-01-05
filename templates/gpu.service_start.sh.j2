@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 GPU_ID="{{ gpu_id }}"
-NV_DOCKER_IMG="{{ nvidia.docker_image }}"
+NV_DOCKER_IMG="{{ crminer_docker_image_nvidia }}"
 
 /usr/bin/docker rm gpu-{{ gpu_id }} >/dev/null 2>&1
 # /usr/bin/docker pull ${NV_DOCKER_IMG}

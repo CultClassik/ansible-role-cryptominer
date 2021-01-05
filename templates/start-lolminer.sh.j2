@@ -1,10 +1,10 @@
 #!/bin/bash
 
-POOL="{{ crypto.eth.pool1 }}:{{ crypto.eth.pool_port.stratum }}"
-WALLET="{{ crypto.eth.addr }}"
+POOL="{{ crminer_crypto.eth.pool1 }}:{{ crminer_crypto.eth.pool_port.stratum }}"
+WALLET="{{ crminer_crypto.eth.addr }}"
 
 # for ethermine.org
-/minebox/lolminer/bin/lolMiner --algo ETHASH --pool $POOL --user $WALLET.$HOSTNAME {% if  gpu_arch == 'amd' %} --4g-alloc-size 4076 {% endif %}
+/minebox/lolminer/bin/lolMiner --algo ETHASH --pool $POOL --user $WALLET.$HOSTNAME {% if  crminer_gpu_arch == 'amd' %} --4g-alloc-size 4076 {% endif %}
 
 # for miningpoolhub.com
-#/minebox/lolminer/bin/lolMiner --algo ETHASH --pool $POOL --user cultclassik.$HOSTNAME --pass x {% if  gpu_arch == 'amd' %} --4g-alloc-size 4076 {% endif %}
+#/minebox/lolminer/bin/lolMiner --algo ETHASH --pool $POOL --user cultclassik.$HOSTNAME --pass x {% if  crminer_gpu_arch == 'amd' %} --4g-alloc-size 4076 {% endif %}
