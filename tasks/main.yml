@@ -74,3 +74,4 @@
     user: root
     name: health_reboot
     job: /sbin/shutdown -r now
+    state: absent
